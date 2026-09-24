@@ -1,0 +1,61 @@
+gateway:
+
+  security:
+
+    upstream:
+      mode: MTLS  #MTLS||TLS||NONE
+
+      tls:
+        protocol: TLSv1.3
+        handshakeTimeoutMs: 10000
+
+        keyStore:
+          type: JKS #PKCS12||JKS
+          path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-server.jks
+          password: changeit
+          keyAlias: gateway-server
+
+        trustStore:
+          type: JKS #PKCS12||JKS
+          path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-server-truststore.jks
+          password: changeit
+
+    downstream:
+
+      systems:
+
+        TSAS:
+          mode: NONE  #MTLS||TLS||NONE
+
+          tls:
+            protocol: TLSv1.3
+            handshakeTimeoutMs: 10000
+
+            keyStore:
+              type: JKS #PKCS12||JKS
+              path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-t-client.jks
+              password: changeit
+              keyAlias: gateway-t
+
+            trustStore:
+              type: JKS #PKCS12||JKS
+              path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-downstream-truststore.jks
+              password: changeit
+
+        PAIMI:
+          mode: NONE  #MTLS||TLS||NONE
+
+          tls:
+            protocol: TLSv1.3
+            handshakeTimeoutMs: 10000
+
+            keyStore:
+              type: JKS #PKCS12||JKS
+              path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-p-client.jks
+              password: changeit
+              keyAlias: gateway-p
+
+            trustStore:
+              type: JKS #PKCS12||JKS
+              path: /Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-downstream-truststore.jks
+              password: changeit

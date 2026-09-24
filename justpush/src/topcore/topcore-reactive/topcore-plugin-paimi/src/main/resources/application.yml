@@ -1,0 +1,32 @@
+canonical:
+  enabled: true
+
+  configuration:
+    inboundFields: classpath:integrations/TopCore/TC-Fields-Inbound.pan
+    outboundFields: classpath:integrations/TopCore/TC-Fields-Outbound.pan
+
+  mappings:
+
+    PAIMI:
+      inbound: classpath:integrations/PAIMI/PAIMI-Inbound.pan
+      outbound: classpath:integrations/PAIMI/PAIMI-Outbound.pan
+
+gateway:
+  downstream:
+    systems:
+      PAIMI:
+        url: http://localhost:8082
+        connectTimeoutMs: 500
+        responseTimeoutMs: 1000
+        maxConnections: 10
+        pendingAcquireMaxCount: 100
+        pendingAcquireTimeoutMs: 1000
+        maxIdleTimeMs: 60000
+        maxLifeTimeMs: 600000
+        keepAlive: true
+
+security:
+  downstream:
+    systems:
+      PAIMI:
+        mode: NONE

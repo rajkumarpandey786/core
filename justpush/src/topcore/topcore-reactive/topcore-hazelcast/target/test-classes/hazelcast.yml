@@ -1,0 +1,6 @@
+topcore:
+  hazelcast:
+    enabled: true
+    cluster-name: dev
+    addresses:
+      - localhost:5701

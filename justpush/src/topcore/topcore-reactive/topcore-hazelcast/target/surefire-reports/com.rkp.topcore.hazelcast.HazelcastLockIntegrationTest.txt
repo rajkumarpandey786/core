@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.rkp.topcore.hazelcast.HazelcastLockIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! -- in com.rkp.topcore.hazelcast.HazelcastLockIntegrationTest
+com.rkp.topcore.hazelcast.HazelcastLockIntegrationTest.shouldAcquireAndReleaseFencedLock -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.UnsupportedOperationException: CP subsystem is an Enterprise feature. Please use the latest applicable Hazelcast Enterprise client to interact with Enterprise clusters using CP.
+	at com.hazelcast.cp.CPSubsystemStubImpl.getLock(CPSubsystemStubImpl.java:78)
+	at com.rkp.topcore.hazelcast.HazelcastLockIntegrationTest.shouldAcquireAndReleaseFencedLock(HazelcastLockIntegrationTest.java:26)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

@@ -1,0 +1,60 @@
+execution:
+  rules:
+
+    - name: BOTH_APPROVED
+      priority: 1
+
+      when:
+        T:
+          - "00"
+        P:
+          - "00"
+
+      result:
+        responseCode: "00"
+        message: APPROVED
+        action: FORWARD
+        hostCode: H000
+        settlement: POST
+
+    - name: P_DECLINED
+      priority: 2
+
+      when:
+        T:
+          - "00"
+        P:
+          - "05"
+          - "12"
+          - "14"
+
+      result:
+        responseCode: "05"
+        message: DECLINED
+        action: REJECT
+        hostCode: H005
+        settlement: NONE
+
+    - name: T_TIMEOUT
+      priority: 3
+
+      when:
+        T:
+          - TIMEOUT
+
+      result:
+        responseCode: "91"
+        message: ISSUER_TIMEOUT
+        action: RETRY
+        hostCode: H091
+        settlement: NONE
+
+    - name: DEFAULT
+      priority: 999
+
+      result:
+        responseCode: "96"
+        message: SYSTEM_ERROR
+        action: REJECT
+        hostCode: H096
+        settlement: NONE

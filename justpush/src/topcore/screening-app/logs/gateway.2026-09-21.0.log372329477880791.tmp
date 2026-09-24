@@ -1,0 +1,73 @@
+2026-09-22T14:36:09.290+05:30 INFO  [main] c.rkp.topcore.ScreeningApplication corr= session= terminal= msgId= - Starting ScreeningApplication using Java 25.0.2 with PID 18500 (/Users/pandey/Development/product/topcorev2/screening-app/target/classes started by pandey in /Users/pandey/Development/product/topcorev2/screening-app)
+2026-09-22T14:36:09.290+05:30 DEBUG [main] c.rkp.topcore.ScreeningApplication corr= session= terminal= msgId= - Running with Spring Boot v3.5.6, Spring v6.2.11
+2026-09-22T14:36:09.290+05:30 INFO  [main] c.rkp.topcore.ScreeningApplication corr= session= terminal= msgId= - No active profile set, falling back to 1 default profile: "default"
+2026-09-22T14:36:09.687+05:30 INFO  [main] c.r.t.core.session.SessionManager corr= session= terminal= msgId= - B-200 session expiry monitor started timeout=60s
+2026-09-22T14:36:09.745+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - Downstream security mode system=TSAS mode=NONE
+2026-09-22T14:36:09.745+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - Downstream TLS disabled system=TSAS - using plain HTTP
+2026-09-22T14:36:09.745+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - WebClient initialized system=TSAS pool=gateway-tsas-pool maxConnections=1000 pendingAcquireMax=5000 pendingAcquireTimeout=5000ms connectTimeout=100ms responseTimeout=1600ms idleTime=60000ms lifeTime=600000ms keepAlive=true securityMode=NONE
+2026-09-22T14:36:09.762+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - Downstream security mode system=PAIMI mode=NONE
+2026-09-22T14:36:09.762+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - Downstream TLS disabled system=PAIMI - using plain HTTP
+2026-09-22T14:36:09.762+05:30 INFO  [main] c.r.t.c.downstream.WebClientFactory corr= session= terminal= msgId= - WebClient initialized system=PAIMI pool=gateway-paimi-pool maxConnections=1000 pendingAcquireMax=5000 pendingAcquireTimeout=5000ms connectTimeout=100ms responseTimeout=700ms idleTime=60000ms lifeTime=600000ms keepAlive=true securityMode=NONE
+2026-09-22T14:36:09.763+05:30 INFO  [main] c.r.t.c.downstream.DownstreamManager corr= session= terminal= msgId= - DownstreamManager initialized clients=[TSAS, PAIMI] processors=[TSAS, PAIMI]
+2026-09-22T14:36:09.795+05:30 INFO  [main] c.r.t.core.config.TcpServerConfig corr= session= terminal= msgId= - Upstream security mode=MTLS
+2026-09-22T14:36:09.795+05:30 INFO  [main] c.r.t.core.config.TcpServerConfig corr= session= terminal= msgId= - Upstream mTLS enabled protocol=TLSv1.3 handshakeTimeout=10000ms clientAuth=REQUIRE
+2026-09-22T14:36:09.911+05:30 INFO  [main] c.r.t.c.security.TlsContextFactory corr= session= terminal= msgId= - TLS server SSL context initialized keyStore=/Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-server.jks trustStore=/Users/pandey/Development/product/topcore/xml-tcp-gateway/certs/gateway/gatewayjks/gateway-server-truststore.jks protocol=TLSv1.3 clientAuth=REQUIRE
+2026-09-22T14:36:09.939+05:30 WARN  [main] o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext corr= session= terminal= msgId= - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tcpServerConfig': Invocation of init method failed
+2026-09-22T14:36:09.944+05:30 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger corr= session= terminal= msgId= - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-22T14:36:09.950+05:30 ERROR [main] o.s.boot.SpringApplication corr= session= terminal= msgId= - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tcpServerConfig': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:429)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1818)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.rkp.topcore.ScreeningApplication.main(ScreeningApplication.java:26)
+Caused by: reactor.netty.ChannelBindException: Failed to bind on [0.0.0.0:9000]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:146)
+		at reactor.core.publisher.Mono.block(Mono.java:1807)
+		at reactor.netty.transport.ServerTransport.bindNow(ServerTransport.java:154)
+		at reactor.netty.transport.ServerTransport.bindNow(ServerTransport.java:139)
+		at com.rkp.topcore.core.config.TcpServerConfig.start(TcpServerConfig.java:197)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:429)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1818)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+		at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+		at com.rkp.topcore.ScreeningApplication.main(ScreeningApplication.java:26)

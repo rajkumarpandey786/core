@@ -1,0 +1,32 @@
+canonical:
+  enabled: true
+
+  configuration:
+    inboundFields: classpath:integrations/TopCore/TC-Fields-Inbound.pan
+    outboundFields: classpath:integrations/TopCore/TC-Fields-Outbound.pan
+
+  mappings:
+
+    TSAS:
+      inbound: classpath:integrations/TSAS/TSAS-Inbound.pan
+      outbound: classpath:integrations/TSAS/TSAS-Outbound.pan
+
+gateway:
+  downstream:
+    systems:
+      TSAS:
+        url: http://localhost:8081
+        connectTimeoutMs: 500
+        responseTimeoutMs: 1000
+        maxConnections: 10
+        pendingAcquireMaxCount: 100
+        pendingAcquireTimeoutMs: 1000
+        maxIdleTimeMs: 60000
+        maxLifeTimeMs: 600000
+        keepAlive: true
+
+security:
+  downstream:
+    systems:
+      TSAS:
+        mode: NONE

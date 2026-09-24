@@ -1,0 +1,12 @@
+canonical:
+  enabled: true
+
+  configuration:
+    inboundFields: classpath:integrations/TopCore/TC-Fields-Inbound.pan
+    outboundFields: classpath:integrations/TopCore/TC-Fields-Outbound.pan
+
+  mappings:
+
+    C400:
+      inbound: classpath:integrations/C400/C400-Inbound.pan
+      outbound: classpath:integrations/C400/C400-Outbound.pan

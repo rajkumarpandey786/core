@@ -1,0 +1,138 @@
+spring:
+  config:
+    import:
+      - classpath:security.yml
+      - classpath:execution-rules.yml
+      - classpath:canonical-config.yml
+      - classpath:database.yml
+      - classpath:hazelcast.yml
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+gateway:
+  upstream:
+    integrationId: C400
+
+  tcp:
+    enabled: true
+    host: 0.0.0.0
+    port: 9000
+    keepAlive: true
+    tcpNoDelay: true
+    receiveBuffer: 1048576
+    sendBuffer: 1048576
+    maxFrameLength: 65535
+
+  protocol:
+    requireEcho: true
+    sessionTimeoutSeconds: 60 		#Application session inactivity timeout. Session remains alive as long as ECHO or TRANSACTION is received within this period.
+
+  downstream:
+    transactionTimeoutMs: 2000 # Must be more than T and P responseTimeoutMs - This is a global Response Timeout
+    maxInflightTransactions: 10000
+
+    active:
+      - TSAS
+      - PAIMI
+
+    systems:
+
+      TSAS:
+        url: http://localhost:8081/functions/api/v1/txnscreening/process
+
+        connectTimeoutMs: 100
+        responseTimeoutMs: 1600
+
+        maxConnections: 1000
+        pendingAcquireMaxCount: 5000
+        pendingAcquireTimeoutMs: 5000
+
+        maxIdleTimeMs: 60000
+        maxLifeTimeMs: 600000
+        keepAlive: true
+
+        authentication:
+          tokenUrl: http://localhost:8081/functions/api/v1/txnscreening/oauth2/token
+          clientId: UV7m0vpKNuxMExpMyGNySoRCfJUa #${TSAS_CLIENT_ID}
+          clientSecret: 5iT0XnSWg2RiXWhl7lfIfNgUhBwa #${TSAS_CLIENT_SECRET}
+          scope: TSaaSScreeningAPIService_POST
+          refreshSkewSeconds: 60
+
+      PAIMI:
+        url: http://localhost:8088
+
+        connectTimeoutMs: 100
+        responseTimeoutMs: 700
+
+        maxConnections: 1000
+        pendingAcquireMaxCount: 5000
+        pendingAcquireTimeoutMs: 5000
+
+        maxIdleTimeMs: 60000
+        maxLifeTimeMs: 600000
+        keepAlive: true
+
+
+logging:
+  level:
+    root: INFO
+    reactor.netty: INFO
+    io.netty.handler.ssl: INFO
+    com.rkp.topcore: DEBUG
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+
+observability:
+  logging:
+    asyncEnabled: true
+    queueSize: 65536
+    discardingThreshold: 0
+    includeCallerData: false
+    level: INFO
+    directory: logs
+    fileName: gateway.log
+    auditFileName: audit.log
+    performanceFileName: performance.log
+    maxHistoryDays: 30
+    maxFileSize: 100MB
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+
+      TSAS:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 20
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 5
+
+      PAIMI:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 20
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 5
+
+  bulkhead:
+    instances:
+
+      TSAS:
+        maxConcurrentCalls: 500
+        maxWaitDuration: 0
+
+      PAIMI:
+        maxConcurrentCalls: 500
+        maxWaitDuration: 0
