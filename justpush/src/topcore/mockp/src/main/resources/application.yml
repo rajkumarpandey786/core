@@ -1,0 +1,24 @@
+server:
+  port: 8088
+
+mock:
+  security:
+
+    # NONE | TLS | MTLS
+    mode: NONE
+
+    tls:
+      protocol: TLSv1.3
+
+      handshakeTimeoutMs: 10000
+
+      keyStore:
+        type: JKS
+        path: ${P_KEYSTORE_PATH:}
+        password: ${P_KEYSTORE_PASSWORD:}
+        keyAlias: mock-p
+
+      trustStore:
+        type: JKS
+        path: ${P_TRUSTSTORE_PATH:}
+        password: ${P_TRUSTSTORE_PASSWORD:}

@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+mock:
+  security:
+
+    # NONE | TLS | MTLS
+    mode: NONE
+
+    tls:
+      protocol: TLSv1.3
+
+      handshakeTimeoutMs: 10000
+
+      keyStore:
+        type: JKS
+        path: ${T_KEYSTORE_PATH:}
+        password: ${T_KEYSTORE_PASSWORD:}
+        keyAlias: mock-t
+
+      trustStore:
+        type: JKS
+        path: ${T_TRUSTSTORE_PATH:}
+        password: ${T_TRUSTSTORE_PASSWORD:}
